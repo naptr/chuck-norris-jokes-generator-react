@@ -9,23 +9,25 @@ import { toBoolean } from '../utils/utils';
 export default function SearchPage() {
   const history = useHistory();
   const query = useQuery();
-  const jokeQuery = query.get('joke');
+  // const jokeQuery = query.get('joke');
 
   const handleGetJoke = () => {
-    toBoolean(jokeQuery) ? null : history.push(`/search?joke=${history.location.state?.search_jokes}`);
+    query.get('joke') == null ? history.push(`/search?joke=${history.location.state?.search_jokes}`) : null;
 
-    getJoke.searchJokes(toBoolean(jokeQuery) ? jokeQuery : history.location.state?.search_jokes)
-    .then(data => console.log(data))
-    .catch(error => console.error(error));
+    // getJoke.searchJokes(jokeQuery != null ? jokeQuery : history.location.state?.search_jokes)
+    // .then(data => console.log(data))
+    // .catch(error => console.error(error));
+
+    console.log(query.get('joke'), history.location.state);
   }
 
   useEffect(() => handleGetJoke(), []);
 
   return (
     <>
-      {
+      {/* {
         jokeQuery && <h1>{ jokeQuery }</h1>
-      }
+      } */}
     </>
   );
 }

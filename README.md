@@ -2,7 +2,8 @@
 This project aimed as first test from Wegodev for Frontend Developers who want to contribute or work together in their project: Distributed Online Reseller System.
 
 ## Run It Locally
-To run this project locally simply clone this repo and
+To run this project locally simply clone this repo and because of this project was created with `yarn` so I highly recommended to install the `package.json` using yarn as well.
+Since, there will be some issues if `yarn` and `npm` mixed in one project.
 
 ## Libraries/ Stacks Used in This Project.
 - <a href="https://reactjs.org/">React</a> as main Library.
