@@ -10,6 +10,7 @@ module.exports = {
       },
       fontFamily: {
         'chuck-norris': ['Rye', 'cursive'],
+        'body-custom': ['"Open Sans"', 'ui-sans-serif', 'system-ui', '-apple-system']
       }
     },
   },

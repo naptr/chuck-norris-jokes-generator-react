@@ -11,8 +11,8 @@ import SearchPage from './pages/SearchPage';
 export default function App() {
 
   return (
-    <section className="flex flex-col items-center md:w-411 md:h-731 relative md:shadow-md">
-      <main className="w-full flex-grow order-4 items-stretch mt-16 py-6">
+    <section className="flex flex-col items-center sm:w-411 sm:h-731 relative sm:shadow-md">
+      <main className="w-full flex-grow order-4 items-stretch mt-16 pb-4 pt-6 px-5">
         <Switch>
           <Route path='/' exact>
             <HomePage />

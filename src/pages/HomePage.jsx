@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 
 import Form from '../components/Form';
+import JokeWrapper from "../components/JokeWrapper";
 import CategorySearchForm from "../components/CategorySearchForm";
+import ChuckNorrisImage from "../components/ChuckNorrisImage";
 
 import { getJoke } from "../apis/api";
 
@@ -10,12 +12,14 @@ import { getJoke } from "../apis/api";
 
 export default function Home() {
   const history = useHistory();
+
+  const [currentJoke, setCurrentJoke] = useState(null);
   const [searchJokesQuery, setSearchJokesQuery] = useState('');
   
   // Apis
   const getRandomJoke = () => { // get random joke immediately at homepage
     getJoke.randomJoke.one() 
-    .then(data => console.log(data))
+    .then(data => setCurrentJoke(data))
     .catch(error => console.error(error));
   }
 
@@ -52,15 +56,20 @@ export default function Home() {
   useEffect(() => initialFetch(), []);
 
   return (
-    <div className="w-full h-full flex flex-col items-center">
+    <div className="w-full h-full flex flex-col items-center space-y-8">
       <Form
         onSubmitFn={handleSearchJokesSubmit} 
         inputValue={searchJokesQuery} 
         onChangeFn={handleSearchJokesChange}
         inputPlaceholder="Search jokes by text" 
       />
-      <div id="joke-wrapper" className="flex items-center flex-col justify-center">
-
+      <div id="random-joke-wrapper" className="flex items-center flex-col justify-start flex-grow space-y-6">
+        <ChuckNorrisImage />
+        {/* <p className="font-semibold italic">{ currentJoke?.value }</p>
+        <Button onClickFn={getRandomJoke}>
+          Another
+        </Button> */}
+        <JokeWrapper buttonClickFn={getRandomJoke} jokeValue={currentJoke?.value} />
       </div>
       <CategorySearchForm />
     </div>

@@ -1,9 +1,17 @@
 import { Link } from 'react-router-dom';
 
 
-export function SearchButton({ buttonValue }) {
+export function Button({ onClickFn, children }) {
   return (
-    <input type="submit" value={buttonValue} className="flex items-center justify-center bg-yellow-700 w-24 px-3 py-2 rounded-md shadow-md text-white font-semibold"/>
+    <button className="flex items-center justify-center bg-yellow-700 w-24 px-3 py-2 rounded-md shadow-md text-white font-body-custom font-bold" onClick={onClickFn}>
+      { children }
+    </button>
+  )
+}
+
+export function SearchButton() {
+  return (
+    <input type="submit" value="Search!" className="flex items-center justify-center bg-yellow-700 w-24 px-3 py-2 rounded-md shadow-md text-white font-body-custom font-bold"/>
   )
 }
 
