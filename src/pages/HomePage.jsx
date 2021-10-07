@@ -33,7 +33,7 @@ export default function Home() {
   }
 
   const handleSearchJokesButton = () => {
-    history.push(`/search`, { search_jokes: searchQueries.search_jokes });
+    history.push(`/search-jokes?about=${(searchQueries.search_jokes).toLowerCase()}`);
   }
 
   const handleSubmit = ev => {

@@ -17,7 +17,7 @@ export default function App() {
           <Route path='/' exact>
             <HomePage />
           </Route>
-          <Route exact path='/search'>
+          <Route exact path='/search-jokes'>
             <SearchPage />
           </Route>
           <Route path='/category-result/:category'>
