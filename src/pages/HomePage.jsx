@@ -1,19 +1,16 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 
-import { Button } from "../components/buttons";
+import Form from '../components/Form';
+import CategorySearchForm from "../components/CategorySearchForm";
 
-import { getJoke } from "../apis/api"
+import { getJoke } from "../apis/api";
 
 
 
 export default function Home() {
   const history = useHistory();
-
-  const [searchQueries, setSearchQueries] = useState({
-    search_jokes: '',
-    jokes_category: ''
-  })
+  const [searchJokesQuery, setSearchJokesQuery] = useState('');
   
   // Apis
   const getRandomJoke = () => { // get random joke immediately at homepage
@@ -22,57 +19,50 @@ export default function Home() {
     .catch(error => console.error(error));
   }
 
+  const getJokesCategories = () => {
+    getJoke.categories()
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+  }
+
+  const initialFetch = () => {
+    getRandomJoke();
+    getJokesCategories();
+  }
+
   // Handlers
-  const handleOnChange = ev => {
-    const { name, value } = ev.target; 
+  // on change handler
+  const handleSearchJokesChange = ev => {
+    const { target: { value } } = ev;
 
-    setSearchQueries({
-      ...searchQueries,
-      [name]: value
-    });
+    setSearchJokesQuery(value);
   }
 
+  // search button handler
   const handleSearchJokesButton = () => {
-    history.push(`/search-jokes?about=${(searchQueries.search_jokes).toLowerCase()}`);
+    history.push(`/jokes/search?about=${(searchJokesQuery)}`);
   }
 
-  const handleSubmit = ev => {
+  // on submit handler
+  const handleSearchJokesSubmit = ev => {
     ev.preventDefault();
-
-    const { name } = ev.target;
-
-    switch (name) {
-      case 'search_jokes_form':
-        handleSearchJokesButton();
-        break;
-      case 'jokes_category_form':
-        
-        break;
-      default:
-        throw new Error('Error: none of above choices');
-    }
+    handleSearchJokesButton();
   }
 
-
-  useEffect(() => getRandomJoke(), []);
+  useEffect(() => initialFetch(), []);
 
   return (
     <div className="w-full h-full flex flex-col items-center">
-      <form name="search_jokes_form" onSubmit={handleSubmit} className="flex flex-row items-center">
-        <input name="search_jokes" type='text' value={searchQueries.search_jokes} onChange={handleOnChange} />
-        <Button buttonValue={'Search'}>
-          Search
-        </Button>
-      </form>
+      <Form
+        onSubmitFn={handleSearchJokesSubmit} 
+        inputValue={searchJokesQuery} 
+        onChangeFn={handleSearchJokesChange}
+        inputPlaceholder="Search jokes by text" 
+      />
       <div id="joke-wrapper" className="flex items-center flex-col justify-center">
 
       </div>
-      <form name="jokes_category_form" onSubmit={handleSubmit} className="flex flex-row items-center">
-        <input name="jokes_category" type='text' value={searchQueries.jokes_category} onChange={handleOnChange} />
-        <Button buttonValue={'Search'}>
-          Search
-        </Button>
-      </form>
+      <CategorySearchForm />
     </div>
   )
 }

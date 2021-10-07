@@ -4,14 +4,17 @@ module.exports = {
   theme: {
     extend: {
       spacing: {
-        '667': '667px'
+        '411': '411px',
+        '667': '667px',
+        '731': '731px'
+      },
+      fontFamily: {
+        'chuck-norris': ['Rye', 'cursive'],
       }
     },
   },
   variants: {
-    extend: {
-      
-    },
+    extend: {},
   },
   plugins: [],
 }

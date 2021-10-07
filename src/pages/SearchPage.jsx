@@ -21,7 +21,7 @@ export default function SearchPage() {
   return (
     <>
       {
-        console.log(jokesFound)
+        // jokesFound.map(joke => { joke.value }</>)
       }
     </>
   );

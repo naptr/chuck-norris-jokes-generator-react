@@ -11,16 +11,16 @@ import SearchPage from './pages/SearchPage';
 export default function App() {
 
   return (
-    <section className="w-screen min-h-screen flex flex-col">
-      <main className="w-full flex-grow order-4 items-stretch mt-14">
+    <section className="flex flex-col items-center md:w-411 md:h-731 relative md:shadow-md">
+      <main className="w-full flex-grow order-4 items-stretch mt-16 py-6">
         <Switch>
           <Route path='/' exact>
             <HomePage />
           </Route>
-          <Route exact path='/search-jokes'>
+          <Route exact path='/jokes/search'>
             <SearchPage />
           </Route>
-          <Route path='/category-result/:category'>
+          <Route path='/jokes/random'>
             <CategoryPage />
           </Route>
         </Switch>

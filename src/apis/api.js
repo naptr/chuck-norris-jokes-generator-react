@@ -16,6 +16,6 @@ export const getJoke = {
     one: () => api(`${API_URL}/random`),
     byCategory: category => api(`${API_URL}/random?category=${category}`)
   },
-  jokeCategories: () => api(`${API_URL}/categories`),
+  categories: () => api(`${API_URL}/categories`),
   searchJokes: query => api(`${API_URL}/search?query=${query}`)
 }
