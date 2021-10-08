@@ -16,7 +16,8 @@ export default function CategorySearchForm({ listOfCategories, fetchingDataLoadi
   const [listOfCategoriesAppear, setListOfCategoriesAppear] = useState(false);
   const [currentCategoryList, setCurrentCategoryList] = useState([]);
 
-  const categoryListRef = useRef(null);
+  const categoryListWrapperRef = useRef(null);
+  const categoryRef = useRef(null);
 
   // handlers
   // on change handler
@@ -25,7 +26,7 @@ export default function CategorySearchForm({ listOfCategories, fetchingDataLoadi
 
     setJokesCategoryQuery(value);
 
-    console.log(autoCompleteCategorySearch(value));
+    fetchingDataError != '' ? null : autoCompleteCategorySearch(value);
   }
 
   // search button handler
@@ -59,42 +60,53 @@ export default function CategorySearchForm({ listOfCategories, fetchingDataLoadi
 
   // custom functions
   const autoCompleteCategorySearch = text => {
-    const newArray = currentCategoryList.map(val => {
-      if (val == undefined) {
+    const newArray = [];
+
+    listOfCategories.forEach(category => {
+      if (text.length == 0 || text.charCodeAt(1) == 32) {
         return
-      } else if (val.toLowerCase().includes(text.toLowerCase)) {
-        return val;
+      } else if (text.length >= 1 && category.toLowerCase().includes(text.toLowerCase())) {
+        newArray.push(category);
       }
     })
-    
-    return newArray;
+
+    if (text.length == 0 || text.charCodeAt(1) == 32) {
+      setCurrentCategoryList(listOfCategories);
+    } else {
+      setCurrentCategoryList(newArray);
+    }
   }
 
   
-  useOutsideClicked(categoryListRef, setListOfCategoriesAppear);
+  useOutsideClicked(categoryListWrapperRef, setListOfCategoriesAppear);
   useEffect(() => listOfCategories?.length > 0 && setCurrentCategoryList(listOfCategories), [listOfCategories]);
+  useEffect(() => console.log(currentCategoryList), [currentCategoryList])
+  useEffect(() => console.log(categoryRef), [categoryRef]);
 
   return (
-    <div className="w-full group relative" ref={categoryListRef}>
-      <div id="list-of-categories" className={`w-64 border-2 rounded-md border-gray-200 flex flex-col items-center justify-center absolute bottom-11 transform transition-all duration-300 ${listOfCategoriesAppear ? 'translate-y-0 opacity-100 h-52' : 'translate-y-11 opacity-0 h-0'}`}>
+    <div className="w-full group relative" ref={categoryListWrapperRef}>
+      <div id="list-of-categories" className={`w-64 max-h-52 border-2 rounded-md border-gray-200 flex flex-col items-center justify-center absolute bottom-11 transform transition-all duration-300 ${listOfCategoriesAppear ? 'translate-y-0 opacity-100' : 'translate-y-11 opacity-0  '}`}>
         {
-          fetchingDataLoading && <Loading>Loading Jokes Categories...</Loading>
-        }
-        {
-          fetchingDataError != '' && 
-          <ErrorComponent>
-            { fetchingDataError }
-          </ErrorComponent>
+          (fetchingDataError != '' || fetchingDataLoading ) && 
+          <div className="w-full h-52 flex items-center justify-center">
+            {
+              fetchingDataLoading ? <Loading>Loading Jokes Categories...</Loading> : fetchingDataError != '' ? <ErrorComponent>{ fetchingDataError }</ErrorComponent> : null
+            }
+          </div>
         }
         {
           listOfCategories?.length > 0 && (
             <div className="h-full w-full flex flex-col overflow-y-scroll scrollbar-hide">
               {
-                currentCategoryList?.map((category, idx) => (
-                  <button key={idx} className="w-full flex items-center justify-start font-bold hover:bg-gray-200 px-4 py-2" onClick={handleChoiceCategory}>
+                currentCategoryList.length > 0 ? currentCategoryList?.map((category, idx) => (
+                  <button key={idx} ref={categoryRef} className="w-full flex items-center justify-start font-bold hover:bg-gray-200 px-4 py-2" onClick={handleChoiceCategory} >
                     {category}
                   </button>
-                ))
+                )) : (
+                  <span className="flex px-4 py-2 w-full items-center justify-start text-gray-400 font-semibold">
+                    No matching categories
+                  </span>
+                )
               }
             </div>
           )
