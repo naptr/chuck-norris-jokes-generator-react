@@ -16,6 +16,7 @@ export default function Home() {
   const [currentJoke, setCurrentJoke] = useState(null);
   const [searchJokesQuery, setSearchJokesQuery] = useState('');
   const [listOfCategories, setListOfCategories] = useState([]);
+  const [categoriesLoading, setCategoriesLoading] = useState(false);
   
   // Apis
   const getRandomJoke = () => { // get random joke immediately at homepage
@@ -25,8 +26,13 @@ export default function Home() {
   }
 
   const getJokesCategories = () => {
+    setCategoriesLoading(true);
+
     getJoke.categories()
-    .then(data => setListOfCategories(data))
+    .then(data => {
+      setListOfCategories(data);
+      setCategoriesLoading(false);
+    })
     .catch(error => console.error(error));
   }
 
@@ -68,9 +74,7 @@ export default function Home() {
         <ChuckNorrisImage />
         <JokeWrapper buttonClickFn={getRandomJoke} jokeValue={currentJoke?.value} />
       </div>
-      {
-        listOfCategories && <CategorySearchForm listOfCategories={listOfCategories} />
-      }
+      <CategorySearchForm listOfCategories={listOfCategories} fetchingDataLoading={categoriesLoading} />
     </div>
   )
 }

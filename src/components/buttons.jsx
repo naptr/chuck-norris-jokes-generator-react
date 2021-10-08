@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 
@@ -28,9 +28,16 @@ export const BackButton = ({ isAppear }) => {
   );
 }
 
-export const ShowCategoriesButton = ({ onClickFn, isFocus }) => {
+export const ShowCategoriesButton = ({ onClickFn }) => {
+  const [isFocus, setIsFocus] = useState(false);
+
+  const handleButtonClicked = () => {
+    setIsFocus(!isFocus);
+    onClickFn();
+  }
+
   return (
-    <button type="button" onClick={onClickFn} className={`h-full w-11 flex items-center justify-center absolute top-0 right-0 ${isFocus && 'rotate-180'} transform transition-transform duration-200`}>
+    <button type="button" onClick={handleButtonClicked} className={`h-full w-11 flex items-center justify-center absolute top-0 right-0 ${isFocus ? 'rotate-180 ' : ''}transform transition-transform duration-200`}>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22">
         <path fill="none" d="M0 0h24v24H0z" />
         <path d="M12 10.828l-4.95 4.95-1.414-1.414L12 8l6.364 6.364-1.414 1.414z" />
