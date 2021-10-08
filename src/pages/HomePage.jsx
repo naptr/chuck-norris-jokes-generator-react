@@ -15,6 +15,7 @@ export default function Home() {
 
   const [currentJoke, setCurrentJoke] = useState(null);
   const [searchJokesQuery, setSearchJokesQuery] = useState('');
+  const [listOfCategories, setListOfCategories] = useState([]);
   
   // Apis
   const getRandomJoke = () => { // get random joke immediately at homepage
@@ -25,7 +26,7 @@ export default function Home() {
 
   const getJokesCategories = () => {
     getJoke.categories()
-    .then(data => console.log(data))
+    .then(data => setListOfCategories(data))
     .catch(error => console.error(error));
   }
 
@@ -65,13 +66,11 @@ export default function Home() {
       />
       <div id="random-joke-wrapper" className="flex items-center flex-col justify-start flex-grow space-y-6">
         <ChuckNorrisImage />
-        {/* <p className="font-semibold italic">{ currentJoke?.value }</p>
-        <Button onClickFn={getRandomJoke}>
-          Another
-        </Button> */}
         <JokeWrapper buttonClickFn={getRandomJoke} jokeValue={currentJoke?.value} />
       </div>
-      <CategorySearchForm />
+      {
+        listOfCategories && <CategorySearchForm listOfCategories={listOfCategories} />
+      }
     </div>
   )
 }
