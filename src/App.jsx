@@ -6,13 +6,16 @@ import CategoryPage from './pages/CategoryPage';
 
 import HomePage from './pages/HomePage';
 import SearchPage from './pages/SearchPage';
+import NotFoundPage from './pages/NotFoundPage';
+
+import Test from './pages/Test';
 
 
 export default function App() {
 
   return (
-    <section className="flex flex-col items-center sm:w-411 sm:h-731 relative sm:shadow-md">
-      <main className="w-full flex-grow order-4 items-stretch mt-16 pb-4 pt-6 px-5">
+    <section className="flex flex-col items-center sm:w-411 h-731 relative sm:shadow-md">
+      <main className="w-full flex-grow order-4 items-stretch mt-16 pb-4 pt-6 px-5 font-body-custom">
         <Switch>
           <Route path='/' exact>
             <HomePage />
@@ -22,6 +25,12 @@ export default function App() {
           </Route>
           <Route path='/jokes/random'>
             <CategoryPage />
+          </Route>
+          <Route path='/test'>
+            <Test />
+          </Route>
+          <Route path="*">
+            <NotFoundPage />
           </Route>
         </Switch>
       </main>

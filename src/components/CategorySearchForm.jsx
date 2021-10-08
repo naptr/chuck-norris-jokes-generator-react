@@ -4,9 +4,11 @@ import { useHistory } from "react-router";
 import { SearchButton, ShowCategoriesButton } from "./buttons";
 
 import { useOutsideClicked } from "../utils/hooks/useOutsideClicked";
+import Loading from "./Loading";
+import ErrorComponent from "./ErrorComponent";
 
 
-export default function CategorySearchForm({ listOfCategories, fetchingDataLoading }) {
+export default function CategorySearchForm({ listOfCategories, fetchingDataLoading, fetchingDataError }) {
   const history = useHistory();
 
   const [jokesCategoryQuery, setJokesCategoryQuery] = useState('');
@@ -23,7 +25,7 @@ export default function CategorySearchForm({ listOfCategories, fetchingDataLoadi
 
     setJokesCategoryQuery(value);
 
-    // setCurrentCategoryList(autoCompleteCategorySearch(value));
+    console.log(autoCompleteCategorySearch(value));
   }
 
   // search button handler
@@ -52,20 +54,37 @@ export default function CategorySearchForm({ listOfCategories, fetchingDataLoadi
     const { target: { innerText: query } } = ev;
 
     setJokesCategoryQuery(query);
-    // console.log(ev.target.innerText);
     handleShowCategories();
   }
 
   // custom functions
-  useOutsideClicked(categoryListRef, setListOfCategoriesAppear);
+  const autoCompleteCategorySearch = text => {
+    const newArray = currentCategoryList.map(val => {
+      if (val == undefined) {
+        return
+      } else if (val.toLowerCase().includes(text.toLowerCase)) {
+        return val;
+      }
+    })
+    
+    return newArray;
+  }
 
-  useEffect(() => listOfCategories.length > 0 && setCurrentCategoryList(listOfCategories), [listOfCategories]);
+  
+  useOutsideClicked(categoryListRef, setListOfCategoriesAppear);
+  useEffect(() => listOfCategories?.length > 0 && setCurrentCategoryList(listOfCategories), [listOfCategories]);
 
   return (
     <div className="w-full group relative" ref={categoryListRef}>
-      <div id="list-of-categories" className={`w-64 border-2 rounded-md border-gray-200 flex flex-col items-center justify-center absolute bottom-11 transform transition-all duration-500 ${listOfCategoriesAppear ? 'translate-y-0 opacity-100 h-52' : 'translate-y-11 opacity-0 h-0'}`}>
+      <div id="list-of-categories" className={`w-64 border-2 rounded-md border-gray-200 flex flex-col items-center justify-center absolute bottom-11 transform transition-all duration-300 ${listOfCategoriesAppear ? 'translate-y-0 opacity-100 h-52' : 'translate-y-11 opacity-0 h-0'}`}>
         {
-          fetchingDataLoading && <h1 className="font-semibold text-gray-300">Loading Jokes Categories</h1>
+          fetchingDataLoading && <Loading>Loading Jokes Categories...</Loading>
+        }
+        {
+          fetchingDataError != '' && 
+          <ErrorComponent>
+            { fetchingDataError }
+          </ErrorComponent>
         }
         {
           listOfCategories?.length > 0 && (
@@ -81,7 +100,7 @@ export default function CategorySearchForm({ listOfCategories, fetchingDataLoadi
           )
         }
       </div>
-      <form onSubmit={handleSubmit} className="flex flex-row items-center w-full justify-evenly sm:justify-between h-11 relative">
+      <form onSubmit={handleSubmit} className="flex flex-row items-center w-full justify-between h-11 relative">
         <div id="input-wrapper" className="h-full relative">
           <input type='text' value={jokesCategoryQuery} onClickCapture={() => setListOfCategoriesAppear(true)} onChange={handleOnChange} required placeholder="Search jokes by category" className="placeholder-gray-300` transition-colors duration-300 w-64 h-full px-3 py-2 rounded-md border-2 border-gray-200 focus:outline-none focus:border-gray-400" />
           <ShowCategoriesButton onClickFn={handleShowCategories} />

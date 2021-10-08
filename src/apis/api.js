@@ -7,7 +7,7 @@ const api = async (url, config) => {
       return await response.json();
     }
   } catch (error) {
-    console.error(error);
+    return 'error';
   }
 }
 
