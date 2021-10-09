@@ -12,3 +12,6 @@ Since, there will be some issues if `yarn` and `npm` mixed in one project.
 - <a href="https://tailwindcss.com">Tailwind CSS</a> and <a href="https://postcss.com">Post CSS</a> for CSS preprocessing and CSS framework to make life easier in website styling using CSS.
 - <a href="https://remixicon.com">Remix Icon</a> as an icons provider.
 - the rest of libraries can be seen in `package.json` file.
+
+## Github Pages
+Go to link below to see the project in actions
