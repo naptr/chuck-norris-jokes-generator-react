@@ -80,7 +80,6 @@ export default function CategorySearchForm({ listOfCategories, fetchingDataLoadi
   
   useOutsideClicked(categoryListWrapperRef, setListOfCategoriesAppear);
   useEffect(() => listOfCategories?.length > 0 && setCurrentCategoryList(listOfCategories), [listOfCategories]);
-  useEffect(() => console.log(listOfCategoriesAppear), [listOfCategoriesAppear])
 
   return (
     <div className="w-full group relative" ref={categoryListWrapperRef}>

@@ -7,7 +7,7 @@
     "build": "vite build",
     "serve": "vite preview",
     "deploy": "gh-pages -d dist",
-    "prod": "cross-env NODE_ENV=production postcss ./src/index.css -o ./dist/index.css"
+    "prod": "yarn build && yarn deploy"
   },
   "dependencies": {
     "react": "^17.0.0",

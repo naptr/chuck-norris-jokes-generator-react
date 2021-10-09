@@ -6,6 +6,9 @@ module.exports = {
       width: {
         '411': '411px',
       },
+      height: {
+        '731': '731px'
+      },
       fontFamily: {
         'chuck-norris': ['Rye', 'cursive'],
         'body-custom': ['"Open Sans"', 'ui-sans-serif', 'system-ui', '-apple-system']
