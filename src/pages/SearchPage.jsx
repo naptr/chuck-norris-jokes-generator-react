@@ -24,9 +24,11 @@ export default function SearchPage() {
     getJoke.searchJokes(searchQuery)
     .then(data => {
       if (data == 'error') {
-        setErrorOccured('Error fetching data!')
+        setErrorOccured('Error fetching data!');
+      } else if (data == 'bad request') {
+        setErrorOccured('Bad Request: Query must be between 3 and 120 characters.');
       } else {
-        setJokesFound(data.result)
+        setJokesFound(data.result);
       }
       setLoading(false);
     })
@@ -48,7 +50,7 @@ export default function SearchPage() {
         {
           errorOccured && (
             <ErrorComponent>
-              Error fetching jokesx 
+              { errorOccured }
             </ErrorComponent>
           )
         }

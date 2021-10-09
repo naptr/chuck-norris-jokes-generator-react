@@ -5,6 +5,10 @@ const api = async (url, config) => {
     const response = await fetch(url, config);
     if (response.status == 200) {
       return await response.json();
+    } else if (response.status == 400) {
+      return 'bad request';
+    } else if (response.status == 404) {
+      return 'not found';
     }
   } catch (error) {
     return 'error';

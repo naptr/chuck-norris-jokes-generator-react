@@ -24,7 +24,9 @@ export default function CategoryPage() {
     getJoke.randomJoke.byCategory(category)
     .then(data => {
       if (data == 'error') {
-        setRandomJokeByCategoryError('Error fetching data!')
+        setRandomJokeByCategoryError('Error fetching data!');
+      } else if (data == 'not found') {
+        setRandomJokeByCategoryError('Error! No jokes found.');
       } else {
         setRandomJokeByCategory(data);
       }
