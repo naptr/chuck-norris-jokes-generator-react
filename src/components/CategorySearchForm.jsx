@@ -80,12 +80,11 @@ export default function CategorySearchForm({ listOfCategories, fetchingDataLoadi
   
   useOutsideClicked(categoryListWrapperRef, setListOfCategoriesAppear);
   useEffect(() => listOfCategories?.length > 0 && setCurrentCategoryList(listOfCategories), [listOfCategories]);
-  useEffect(() => console.log(currentCategoryList), [currentCategoryList])
-  useEffect(() => console.log(categoryRef), [categoryRef]);
+  useEffect(() => console.log(listOfCategoriesAppear), [listOfCategoriesAppear])
 
   return (
     <div className="w-full group relative" ref={categoryListWrapperRef}>
-      <div id="list-of-categories" className={`w-64 max-h-52 border-2 rounded-md border-gray-200 flex flex-col items-center justify-center absolute bottom-11 transform transition-all duration-300 ${listOfCategoriesAppear ? 'translate-y-0 opacity-100' : 'translate-y-11 opacity-0  '}`}>
+      <div id="list-of-categories" className={`w-64 border-2 rounded-md border-gray-200 flex flex-col items-center justify-center absolute bottom-11 transform transition-all duration-300 bg-white ${listOfCategoriesAppear ? 'translate-y-0 visible opacity-100 max-h-52' : 'translate-y-11 h-0 invisible opacity-0'}`}>
         {
           (fetchingDataError != '' || fetchingDataLoading ) && 
           <div className="w-full h-52 flex items-center justify-center">

@@ -14,7 +14,7 @@ import Test from './pages/Test';
 export default function App() {
 
   return (
-    <section className="flex flex-col items-center sm:w-411 h-731 relative sm:shadow-md">
+    <section className="flex flex-col items-center relative shadow-md" style={{ height: 731+'px', width: 411+'px' }}>
       <main className="w-full flex-grow order-4 items-stretch mt-16 pb-4 pt-6 px-5 font-body-custom">
         <Switch>
           <Route path='/' exact>

@@ -1,10 +1,13 @@
 {
+  "homepage": "https://ziunadev.github.io/chuck-norris-jokes-generator-react",
   "name": "chuck-norris-generator-react",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "deploy": "gh-pages -d dist",
+    "prod": "cross-env NODE_ENV=production postcss ./src/index.css -o ./dist/index.css"
   },
   "dependencies": {
     "react": "^17.0.0",
@@ -14,7 +17,10 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^1.0.0",
     "autoprefixer": "^10.3.7",
+    "cross-env": "^7.0.3",
+    "gh-pages": "^3.2.3",
     "postcss": "^8.3.9",
+    "postcss-cli": "^9.0.1",
     "tailwindcss": "^2.2.16",
     "vite": "^2.6.0"
   }

@@ -1,12 +1,10 @@
 module.exports = {
-  purge: ['./index.html', './src/**/*/*.{vue, js, jsx, tsx}'],
+  purge: ['*.html', './src/**/*/*.jsx', './src/*.jsx'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      spacing: {
+      width: {
         '411': '411px',
-        '667': '667px',
-        '731': '731px'
       },
       fontFamily: {
         'chuck-norris': ['Rye', 'cursive'],
