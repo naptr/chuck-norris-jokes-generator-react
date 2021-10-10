@@ -45,7 +45,7 @@ export default function CategoryPage() {
             Loading fetching joke...
           </Loading>
         ) : randomJokeByCategoryError == '' ? (
-          <div className="overflow-auto w-full" style={{maxHeight: 303+'px'}}>
+          <div className="overflow-auto w-full scrollbar-hide" style={{maxHeight: 303+'px'}}>
             <JokeWrapper jokeValue={randomJokeByCategory.value} />
           </div>
         ) : (

@@ -91,21 +91,24 @@ export default function Home() {
       />
       <div id="random-joke-wrapper" className="flex items-center flex-col justify-start flex-grow space-y-6">
         <ChuckNorrisImage className="w-full" />
-        {
-          randomJokeLoading ? (
-            <Loading>
-              Fetching random joke...
-            </Loading>
-          ) : (
-            randomJokeError == '' ? (
-              <JokeWrapper jokeValue={currentJoke?.value} />
+        <div className="w-full overflow-auto scrollbar-hide" style={{ maxHeight: 325+'px' }}>
+          {
+            randomJokeLoading ? (
+              <Loading>
+                Fetching random joke...
+              </Loading>
             ) : (
-              <ErrorComponent>
-                { randomJokeError }
-              </ErrorComponent>
+              randomJokeError == '' ? (
+                  <JokeWrapper jokeValue={currentJoke?.value} />
+
+              ) : (
+                <ErrorComponent>
+                  { randomJokeError }
+                </ErrorComponent>
+              )
             )
-          )
-        }
+          }
+        </div>
         <Button onClickFn={getRandomJoke}>
           Another!
         </Button>
