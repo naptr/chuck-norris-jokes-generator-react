@@ -6,6 +6,7 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
+    "local-preview": "vite build && vite preview",
     "deploy": "gh-pages -d dist",
     "prod": "yarn build && yarn deploy"
   },

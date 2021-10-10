@@ -26,7 +26,7 @@ export default function CategoryPage() {
       if (data == 'error') {
         setRandomJokeByCategoryError('Error fetching data!');
       } else if (data == 'not found') {
-        setRandomJokeByCategoryError('Error! No jokes found.');
+        setRandomJokeByCategoryError('Error! No jokes found. Wrong category, I guess.');
       } else {
         setRandomJokeByCategory(data);
       }
