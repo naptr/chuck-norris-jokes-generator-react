@@ -17,5 +17,5 @@ Since, there will be some issues if `yarn` and `npm` mixed in one project.
 Go to this link to see the project in actions https://ziunadev.github.io/chuck-norris-jokes-generator-react/#/ .
 
 Nb:
-- This web was created for mobile using Google Pixel 2 Layout and Size, for better mobile phone experience we're recommend to use 411 x 731 mobile phone size.<br/>
-- Also maybe the layout won't compatible/ properly rendered with mobile phone with size below or equal to 320 x 568
+- This web was created for mobile using Google Pixel 2 layout and size, for better mobile phone experience we're recommend to use 411 x 731 mobile phone size.<br/>
+- Also maybe the layout won't compatible/ properly rendered with mobile phone with size below or equal to 320 x 568.
