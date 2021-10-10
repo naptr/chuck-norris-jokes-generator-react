@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import Header from './components/Header';
 import CategoryPage from './pages/CategoryPage';

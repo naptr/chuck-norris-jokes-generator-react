@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
 import { getJoke } from '../apis/api';
-import ChuckNorrisImage from '../components/ChuckNorrisImage';
 import ChuckNorrisImageWithText from '../components/ChuckNorrisImageWithText';
 import ErrorComponent from '../components/ErrorComponent';
 import JokeWrapper from '../components/JokeWrapper';
