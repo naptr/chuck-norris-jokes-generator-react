@@ -7,8 +7,6 @@ import HomePage from './pages/HomePage';
 import SearchPage from './pages/SearchPage';
 import NotFoundPage from './pages/NotFoundPage';
 
-import Test from './pages/Test';
-
 
 export default function App() {
 
@@ -24,9 +22,6 @@ export default function App() {
           </Route>
           <Route path='/jokes/random'>
             <CategoryPage />
-          </Route>
-          <Route path='/test'>
-            <Test />
           </Route>
           <Route path="*">
             <NotFoundPage />

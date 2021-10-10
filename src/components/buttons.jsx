@@ -11,7 +11,7 @@ export function Button({ onClickFn, children }) { // reusable button component f
 
 export function SearchButton() {  // reusable button component for searching usage, used inside form with onSubmit attribute
   return (
-    <input type="submit" value="Search!" className="flex items-center justify-center bg-yellow-700 w-24 px-3 py-2 rounded-md shadow-md text-white font-body-custom font-bold"/>
+    <input type="submit" value="Search!" className="cursor-pointer flex items-center justify-center bg-yellow-700 w-24 px-3 py-2 rounded-md shadow-md text-white font-body-custom font-bold"/>
   )
 }
 
