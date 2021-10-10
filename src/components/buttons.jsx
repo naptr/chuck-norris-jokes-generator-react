@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-
-export function Button({ onClickFn, children }) {
+export function Button({ onClickFn, children }) { // reusable button component for global usage
   return (
     <button className="flex items-center justify-center bg-yellow-700 min-w-max px-3 py-2 rounded-md shadow-md text-white font-body-custom font-bold" onClick={onClickFn}>
       { children }
@@ -10,7 +9,7 @@ export function Button({ onClickFn, children }) {
   )
 }
 
-export function SearchButton() {
+export function SearchButton() {  // reusable button component for searching usage, used inside form with onSubmit attribute
   return (
     <input type="submit" value="Search!" className="flex items-center justify-center bg-yellow-700 w-24 px-3 py-2 rounded-md shadow-md text-white font-body-custom font-bold"/>
   )
@@ -28,7 +27,7 @@ export const BackButton = ({ isAppear }) => {
   );
 }
 
-export const ShowCategoriesButton = ({ onClickFn }) => {
+export const ShowCategoriesButton = ({ onClickFn }) => { // button used for appearing categories, using outside function
   const [isFocus, setIsFocus] = useState(false);
 
   const handleButtonClicked = () => {
