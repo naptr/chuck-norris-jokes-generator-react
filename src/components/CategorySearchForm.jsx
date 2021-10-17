@@ -62,19 +62,16 @@ export default function CategorySearchForm({ listOfCategories, fetchingDataLoadi
   const autoCompleteCategorySearch = text => {  // function for autocompleting user typing in searching category/ ies
     const newArray = [];  // empty array for storing filtered list of categories
 
-    listOfCategories.forEach(category => {  // using fetched categories data
-      if (text.length == 0 || text.charCodeAt(1) == 32) { // if user typing text length is equal to 0 or when user typing text is space (' ') return void (nothing)
-        return
-      } else if (text.length >= 1 && category.toLowerCase().includes(text.toLowerCase())) { // else if user typing text is more than or equal to one and the category is includes user typing text then push the typed category or anything that equal to it to the empty array
+    listOfCategories.filter(category => { // update autocomplete feature using Array.prototype.filter()
+      if (category.startsWith(text)) {
         newArray.push(category);
       }
-    })
-
-    // function behavior
-    if (text.length == 0 || text.charCodeAt(1) == 32) { // if user doesn't type anything yet make current category list using fetched categories data
-      setCurrentCategoriesList(listOfCategories);
-    } else {  // else replace current categories list with new array from above conditional
+    });
+    
+    if (text.length >= 1) {
       setCurrentCategoriesList(newArray);
+    } else {
+      setCurrentCategoriesList(listOfCategories);
     }
   }
 
