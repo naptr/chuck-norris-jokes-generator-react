@@ -14,7 +14,7 @@ Since, there will be some issues if `yarn` and `npm` mixed in one project.
 - the rest of libraries can be seen in `package.json` file.
 
 ## Github Pages
-Go to this link to see the project in actions https://ziunadev.github.io/chuck-norris-jokes-generator-react/#/ .
+Go to this link to see the project in actions https://naptr.github.io/chuck-norris-jokes-generator-react/#/ .
 
 Nb:
 - This web was created for mobile using Google Pixel 2 layout and size, for better mobile phone experience we're recommend to use 411 x 731 mobile phone size.<br/>
